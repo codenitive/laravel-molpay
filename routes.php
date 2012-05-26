@@ -1,7 +1,11 @@
 <?php
 
-Request::post('(:bundle)/return', function ()
+Request::post('(:bundle)/callback', function ()
 {
-	$input = Input::all();
-	
+	Controller::call('molpay::callback@index');
+});
+
+Request::post('(:bundle)/push', function ()
+{
+	return Controller::call('molpay::callback@push');
 });
