@@ -50,6 +50,12 @@ class Molpay_Callback_Controller extends Controller
 	{
 		$input = Input::all();
 
+		// only accept molpay callback query
+		if ($input['nbcb'] != '1')
+		{
+			throw new Exception("Not a valid Molpay Callback Query");
+		}
+
 		// verify origin of transaction using the hash
 		$this->verify_hash();
 
