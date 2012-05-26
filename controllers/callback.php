@@ -78,6 +78,7 @@ class Molpay_Callback_Controller extends Controller
 				break;
 		}
 
+		return Response::make('', 200);
 	}
 
 	/**

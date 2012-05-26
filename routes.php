@@ -8,7 +8,7 @@
 
 Request::post('(:bundle)/callback', function ()
 {
-	Controller::call('molpay::callback@index');
+	return Controller::call('molpay::callback@index');
 });
 
 Request::post('(:bundle)/push', function ()
