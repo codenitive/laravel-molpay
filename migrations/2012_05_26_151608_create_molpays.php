@@ -11,6 +11,7 @@ class Create_Molpays {
 		Schema::create('molpays', function ($table)
 		{
 			$table->increments();
+			
 			$table->decimal('amount', 10, 2);
 			$table->string('order_id');
 			$table->string('app_id');
@@ -23,6 +24,8 @@ class Create_Molpays {
 			$table->string('skey', 32);
 
 			$table->timestamps();
+
+			$table->index('transaction_id');
 		});
 	}
 
