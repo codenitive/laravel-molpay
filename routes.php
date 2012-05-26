@@ -1,5 +1,11 @@
 <?php
 
+/*
+|--------------------------------------------------------------------------
+| Molpay Bundle Routes
+|--------------------------------------------------------------------------
+*/
+
 Request::post('(:bundle)/callback', function ()
 {
 	Controller::call('molpay::callback@index');

@@ -62,7 +62,19 @@ class Checkout
 	 */
 	public function __get($key)
 	{
-		return $this->config[$key] or null;
+		return isset($this->config[$key]) ? $this->config[$key] : null;
+	}
+	
+	/**
+	 * Check if a configuration exist
+	 *
+	 * @access  public
+	 * @param   string      $key
+	 * @return  bool
+	 */
+	public function __isset($key)
+	{
+		return isset($this->config[$key]);
 	}
 
 	/**
