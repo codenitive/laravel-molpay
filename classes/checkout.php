@@ -1,6 +1,6 @@
 <?php namespace Molpay;
 
-use \Config, \Closure, Hybrid\Curl;
+use \Config, \Closure, \Redirect, Hybrid\Curl;
 
 class Checkout
 {

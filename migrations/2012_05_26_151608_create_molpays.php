@@ -12,16 +12,18 @@ class Create_Molpays {
 		{
 			$table->increments();
 			
-			$table->decimal('amount', 10, 2);
+			$table->decimal('amount', 10, 2)->nullable();
 			$table->string('order_id');
-			$table->string('app_id');
+			$table->string('app_code')->nullable();
 			$table->integer('transaction_id');
 			$table->string('domain');
 			$table->string('status', 2);
 			$table->string('currency', 2);
-			$table->date('paydate');
+			$table->date('paid_at');
 			$table->string('channel');
-			$table->string('skey', 32);
+			$table->string('error_code')->nullable();
+			$table->string('error_description')->nullable();
+			$table->string('security_key', 32)->nullable();
 
 			$table->timestamps();
 
