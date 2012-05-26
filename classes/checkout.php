@@ -133,7 +133,6 @@ class Checkout
 			'vcode'       => $this->vcode,
 		));
 
-
 		return Redirect::to($url);
 	}
 
