@@ -1,8 +1,11 @@
 <?php
 
-Autoloader::directories(array(
-	Bundle::path('molpay').'libraries',
-	Bundle::path('molpay').'models',
+Autoloader::namespaces(array(
+	'Molpay' => Bundle::path('molpay').'libraries',
+));
+
+Autoloader::map(array(
+	'Molpay\\Transaction' => Bundle::path('molpay').'models/transaction'.EXT,
 ));
 
 
