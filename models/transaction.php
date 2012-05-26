@@ -4,5 +4,5 @@ use Laravel\Eloquent;
 
 class Transaction extends Eloquent
 {
-	public static $table = 'molpay_transactions';
+	public static $table = 'molpays';
 }

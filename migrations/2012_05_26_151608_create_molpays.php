@@ -1,6 +1,6 @@
 <?php
 
-class Create_Molpay_Transactions {
+class Create_Molpays {
 	/**
 	 * Make changes to the database.
 	 *
@@ -8,7 +8,7 @@ class Create_Molpay_Transactions {
 	 */
 	public function up()
 	{
-		Schema::create('molpay_transactions', function ($table)
+		Schema::create('molpays', function ($table)
 		{
 			$table->increments();
 			$table->decimal('amount', 10, 2);
@@ -33,6 +33,6 @@ class Create_Molpay_Transactions {
 	 */
 	public function down()
 	{
-		Schema::drop('molpay_transactions');
+		Schema::drop('molpays');
 	}
 }
