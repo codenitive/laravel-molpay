@@ -1,4 +1,4 @@
-<?php namespace Molpay\Model;
+<?php namespace Molpay;
 
 use Laravel\Eloquent;
 

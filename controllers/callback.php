@@ -1,6 +1,6 @@
-<?php namespace Molpay;
+<?php
 
-use \Input, \Event, Molpay\Model\Transaction;
+use \Input, \Event, Molpay\Transaction;
 
 class Molpay_Callback_Controller extends Controller
 {
@@ -130,10 +130,10 @@ class Molpay_Callback_Controller extends Controller
 	{
 		extract(Input::all());
 
-		$vkey = Config::get('molpay::api.verify_key', '');
-		$lkey = md5($paydate.$domain.md5($tranID.$orderid.$status.$domain.$amount.$currency).$appcode.$vkey);
+		$vkey    = Config::get('molpay::api.verify_key', '');
+		$confirm = md5($paydate.$domain.md5($tranID.$orderid.$status.$domain.$amount.$currency).$appcode.$vkey);
 
-		if ($skey !== $lkey)
+		if ($skey !== $confirm)
 		{
 			throw new Exception("Invalid Transaction Key");
 		}
