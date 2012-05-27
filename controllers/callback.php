@@ -85,7 +85,7 @@ class Molpay_Callback_Controller extends Controller
 	 * Save all payment transaction
 	 *
 	 * @access  protected
-	 * @return  void
+	 * @return  Eloquent
 	 */
 	protected function save()
 	{
@@ -118,6 +118,8 @@ class Molpay_Callback_Controller extends Controller
 		}
 
 		$molpay->save();
+		
+		return $molpay;
 	}
 
 	/**
