@@ -15,7 +15,7 @@ class Molpay_Callback_Controller extends Controller
 		$input = Input::all();
 
 		// verify origin of transaction using the hash
-		$this->verify_hash();
+		$this->validation();
 
 		// save the transaction
 		$this->save();
@@ -57,7 +57,7 @@ class Molpay_Callback_Controller extends Controller
 		}
 
 		// verify origin of transaction using the hash
-		$this->verify_hash();
+		$this->validation();
 
 		// save the transaction
 		$this->save();
@@ -123,13 +123,13 @@ class Molpay_Callback_Controller extends Controller
 	}
 
 	/**
-	 * Verify hash to ensure that the request actually came from Molpay
+	 * Validate hash to ensure that the request actually came from Molpay
 	 *
 	 * @access  protected
 	 * @return  void
 	 * @throws  Molpay\Exception
 	 */
-	protected function verify_hash()
+	protected function validation()
 	{
 		extract(Input::all());
 
