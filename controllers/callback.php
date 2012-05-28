@@ -18,7 +18,7 @@ class Molpay_Callback_Controller extends Controller
 		$this->validation();
 
 		// save the transaction
-		$this->save();
+		$molpay = $this->save();
 
 		switch ($input['status'])
 		{
@@ -36,7 +36,13 @@ class Molpay_Callback_Controller extends Controller
 				break;
 		}
 
-		// what should we return to user?
+		if (Event::listeners('molpay.response.return_url'))
+		{
+			$response = Event::until('molpay.response.return_url', array($molpay));
+
+			if ( ! is_null($response)) return $response;
+		}
+
 		return Response::make('', 200);
 	}
 
@@ -60,7 +66,7 @@ class Molpay_Callback_Controller extends Controller
 		$this->validation();
 
 		// save the transaction
-		$this->save();
+		$molpay = $this->save();
 
 		switch ($input['status'])
 		{
@@ -76,6 +82,13 @@ class Molpay_Callback_Controller extends Controller
 			case '22' :
 				Event::fire('molpay.checkout.pending', array($input['order_id']));
 				break;
+		}
+
+		if (Event::listeners('molpay.response.callback'))
+		{
+			$response = Event::until('molpay.response.callback', array($molpay));
+
+			if ( ! is_null($response)) return $response;
 		}
 
 		return Response::make('', 200);
