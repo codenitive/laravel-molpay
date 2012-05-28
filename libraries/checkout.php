@@ -28,7 +28,7 @@ class Checkout
 	 */
 	protected function __construct($config = array())
 	{
-		$this->config = array_merge($this->config, Config::get('molpay::api', array());
+		$this->config = array_merge($this->config, Config::get('molpay::api', array()));
 
 		if (is_array($config))
 		{
