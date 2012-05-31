@@ -39,6 +39,7 @@ Molpay Checkout invoke a payment request to Molpay Payment Gateway.
 	// set the amount total
 	$checkout->amount   = $amounts;
 	$checkout->order_id = $invoice->id;
+	$checkout->country  = 'MY';
 	
 	return $checkout->get();
 
@@ -49,6 +50,7 @@ Molpay Checkout invoke a payment request to Molpay Payment Gateway.
 	$checkout->verify_key		@ Merchant Verify Key
 	$checkout->amount			@ Payment Amount
 	$checkout->currency			@ Payment Currency
+	$checkout->country          @ Destination Country for delivery
 	$checkout->order_id         @ Unique alpha-numeric order id
 	$checkout->payment_method   @ Payment method for this checkout
 	
@@ -57,6 +59,10 @@ Molpay Checkout invoke a payment request to Molpay Payment Gateway.
 	$checkout->email			@ Buyer E-mail Address
 	$checkout->mobile			@ Buyer Phone Number
 	$checkout->description		@ Description of Payment
+
+### Supported Country
+
+Please refer to <http://www.iso.org/iso/country_codes/iso_3166_code_lists.htm>, and take note that United Kingdom is GB (instead of UK).
 
 <a name="methods"></a>	
 ## Methods
