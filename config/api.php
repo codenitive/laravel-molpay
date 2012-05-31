@@ -53,5 +53,5 @@ return array(
 		'hongleong'   => 'hlb',
 		'mepscash'    => 'mepscash',
 		'webcash'     => 'webcash',
-	);
+	),
 );
