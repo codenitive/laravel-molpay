@@ -1,6 +1,6 @@
 <?php
 
-class Create_Molpays {
+class Molpay_Create_Molpays {
 	/**
 	 * Make changes to the database.
 	 *
@@ -10,7 +10,7 @@ class Create_Molpays {
 	{
 		Schema::create('molpays', function ($table)
 		{
-			$table->increments();
+			$table->increments('id');
 			
 			$table->decimal('amount', 10, 2)->nullable();
 			$table->string('order_id');
