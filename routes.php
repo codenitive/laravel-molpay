@@ -6,12 +6,12 @@
 |--------------------------------------------------------------------------
 */
 
-Request::post('(:bundle)/callback', function ()
+Route::post('(:bundle)/callback', function ()
 {
 	return Controller::call('molpay::callback@index');
 });
 
-Request::post('(:bundle)/push', function ()
+Route::post('(:bundle)/push', function ()
 {
 	return Controller::call('molpay::callback@push');
 });
