@@ -4,6 +4,22 @@ use \Input, \Event, Molpay\Transaction;
 
 class Molpay_Callback_Controller extends Controller
 {
+	protected $input = null;
+
+	/**
+	 * Initalize the Callback Controller
+	 *
+	 * @access  public
+	 * @return  void
+	 */
+	public function __construct()
+	{
+		$input = Input::all();
+		$input['order_id'] = $input['orderid'];
+
+		$this->input = $input;
+	}
+
 	/**
 	 * Used as Molpay Return URL callback
 	 *
@@ -12,7 +28,7 @@ class Molpay_Callback_Controller extends Controller
 	 */
 	public function action_index() 
 	{
-		$input = Input::all();
+		$input = $this->input;
 
 		// verify origin of transaction using the hash
 		$this->validation();
@@ -54,7 +70,7 @@ class Molpay_Callback_Controller extends Controller
 	 */
 	public function action_push() 
 	{
-		$input = Input::all();
+		$input = $this->input;
 
 		// only accept molpay callback query
 		if ($input['nbcb'] != '1')
@@ -102,7 +118,7 @@ class Molpay_Callback_Controller extends Controller
 	 */
 	protected function save()
 	{
-		$input = Input::all();
+		$input = $this->input;
 
 		// check for transaction id.
 		$molpay = Transaction::where('transaction_id', '=', $input['tranID'])->first();
@@ -144,7 +160,7 @@ class Molpay_Callback_Controller extends Controller
 	 */
 	protected function validation()
 	{
-		extract(Input::all());
+		extract($this->input);
 
 		$vkey    = Config::get('molpay::api.verify_key', '');
 		$confirm = md5($paydate.$domain.md5($tranID.$orderid.$status.$domain.$amount.$currency).$appcode.$vkey);
