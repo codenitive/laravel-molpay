@@ -30,7 +30,7 @@ Event::listen('molpay.checkout.paid', function ($order_id)
 | Trigger an event when payment is marked as failed.
 |
 */
-Event::listen('molpay.checkout.failed', function ($order_id, $status) 
+Event::listen('molpay.checkout.failed', function ($order_id) 
 {
 	// Transaction is failed
 });
@@ -43,7 +43,7 @@ Event::listen('molpay.checkout.failed', function ($order_id, $status)
 | Trigger an event when payment is marked as pending.
 |
 */
-Event::listen('molpay.checkout.pending', function ($order_id, $status) 
+Event::listen('molpay.checkout.pending', function ($order_id) 
 {
 	// Transaction is pending
 });
