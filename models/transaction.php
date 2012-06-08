@@ -1,6 +1,6 @@
 <?php namespace Molpay;
 
-use Laravel\Eloquent;
+use \Eloquent;
 
 class Transaction extends Eloquent
 {
