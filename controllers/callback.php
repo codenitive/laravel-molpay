@@ -127,7 +127,7 @@ class Molpay_Callback_Controller extends Controller
 		if ('00' !== $input['status'])
 		{
 			$input['error_code'] and $molpay->error_code = $input['error_code'];
-			$input['error_description'] and $molpay->error_description = $input['error_description'];
+			$input['error_desc'] and $molpay->error_description = $input['error_desc'];
 		}
 
 		$molpay->save();
