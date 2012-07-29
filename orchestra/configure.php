@@ -1,7 +1,5 @@
 <?php 
 
-<?php
-
 Event::listen('orchestra.form: extension.molpay', function ($config, $form)
 {
 	$form->extend(function ($form)
