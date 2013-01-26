@@ -3,7 +3,7 @@
 	"description" : "Molpay Payment Gateway Bundle",
 	"author"      : "Mior Muhammad Zaki",
 	"url"         : "http://bundles.laravel.com/bundle/molpay",
-	"version"     : "0.1.0",
+	"version"     : "0.2.0",
 	"config"      : {
 		"handles" : "molpay"
 	}

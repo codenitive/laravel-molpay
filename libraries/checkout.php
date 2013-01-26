@@ -1,6 +1,12 @@
 <?php namespace Molpay;
 
-use \Config, \Closure, \Redirect, \URL, Hybrid\Curl;
+use \Config, 
+	\Closure, 
+	\Exception,
+	\InvalidArgumentException,
+	\Redirect, 
+	\URL, 
+	Hybrid\Curl;
 
 class Checkout
 {
@@ -90,7 +96,7 @@ class Checkout
 		{
 			if ( ! isset($this->config[$required]) or empty($this->config[$required]))
 			{
-				throw new Exception("Missing [{$required}] configuration");
+				throw new InvalidArgumentException("Missing [{$required}] configuration");
 			}
 		}
 
@@ -99,7 +105,9 @@ class Checkout
 
 		if ( ! array_key_exists($this->payment_method, $this->config['payment_methods']))
 		{
-			throw new Exception("Payment Method [".$this->payment_method."] is not available for MerchantID");
+			throw new InvalidArgumentException(
+				"Payment Method [{$this->payment_method}] is not available for MerchantID"
+			);
 		}
 
 		// set vcode
@@ -126,14 +134,24 @@ class Checkout
 	 */
 	public function get($callback = null)
 	{
-		if ($callback instanceof Closure)
-		{
-			$callback();
-		}
+		if ($callback instanceof Closure) call_user_func($callback);
 
 		$this->validate();
 
-		$url = sprintf(static::$url, $this->merchant_id, $this->payment_methods[$this->payment_method]).'?'.http_build_query(array(
+		$url = sprintf(static::$url, $this->merchant_id, $this->generate_url());
+
+		return Redirect::to($url);
+	}
+
+	/**
+	 * Generate URL
+	 *
+	 * @access protected
+	 * @return string
+	 */
+	protected function generate_url()
+	{
+		return $this->payment_methods[$this->payment_method]).'?'.http_build_query(array(
 			'amount'      => $this->amount,
 			'orderid'     => strval($this->order_id),
 			'bill_name'   => $this->name ?: '',
@@ -143,9 +161,7 @@ class Checkout
 			'cur'         => $this->currency,
 			'returnurl'   => URL::to('molpay::return'),
 			'vcode'       => $this->vcode,
-		));
-
-		return Redirect::to($url);
+		);
 	}
 
 	/**

@@ -1,13 +1,12 @@
 <?php
 
 Autoloader::namespaces(array(
-	'Molpay' => Bundle::path('molpay').'libraries',
+	'Molpay' => Bundle::path('molpay').'libraries'.DS,
 ));
 
 Autoloader::map(array(
-	'Molpay\\Transaction' => Bundle::path('molpay').'models/transaction'.EXT,
+	'Molpay\Transaction' => Bundle::path('molpay').'models/transaction'.EXT,
 ));
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +16,7 @@ Autoloader::map(array(
 | Trigger an event when payment is made by client.
 |
 */
-Event::listen('molpay.checkout.paid', function ($order_id) 
+Event::listen('molpay.checkout: paid', function ($order_id) 
 {
 	// Transaction paid and done.
 });
@@ -30,7 +29,7 @@ Event::listen('molpay.checkout.paid', function ($order_id)
 | Trigger an event when payment is marked as failed.
 |
 */
-Event::listen('molpay.checkout.failed', function ($order_id) 
+Event::listen('molpay.checkout: failed', function ($order_id) 
 {
 	// Transaction is failed
 });
@@ -43,7 +42,7 @@ Event::listen('molpay.checkout.failed', function ($order_id)
 | Trigger an event when payment is marked as pending.
 |
 */
-Event::listen('molpay.checkout.pending', function ($order_id) 
+Event::listen('molpay.checkout: pending', function ($order_id) 
 {
 	// Transaction is pending
 });

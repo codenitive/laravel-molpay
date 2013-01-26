@@ -1,6 +1,6 @@
 <?php
 
-use \Input, \Event, Molpay\Transaction;
+use Molpay\Transaction;
 
 class Molpay_Callback_Controller extends Controller
 {
@@ -88,15 +88,15 @@ class Molpay_Callback_Controller extends Controller
 		{
 			case '00' :
 				// payment is made
-				Event::fire('molpay.checkout.paid', array($input['order_id']));
+				Event::fire('molpay.checkout: paid', array($input['order_id']));
 				break;
 
 			case '11' :
-				Event::fire('molpay.checkout.failed', array($input['order_id']));
+				Event::fire('molpay.checkout: failed', array($input['order_id']));
 				break;
 
 			case '22' :
-				Event::fire('molpay.checkout.pending', array($input['order_id']));
+				Event::fire('molpay.checkout: pending', array($input['order_id']));
 				break;
 		}
 
@@ -169,7 +169,6 @@ class Molpay_Callback_Controller extends Controller
 		{
 			throw new Exception("Invalid Transaction Key");
 		}
-
 	}
 
 }
